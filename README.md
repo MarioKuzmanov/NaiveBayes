@@ -11,9 +11,11 @@ As an example of a generative model, this simple classifier returns the class wi
 document, i.e. which is the most likely class to have generated the document.  
 In this case the classes are emotions: positive, negative and neutral. It is calculated by making use of the  **prior
 probabilities**  and the **document likelihood**, all summed in log-space to avoid underflow.
-When predicting, any words that don't appear in the training set are ignored, one of the simplifying assumptions
-the `Naive` model makes.
+When predicting, any words that don't appear in the training set are ignored, one of the simplifying assumptions the `Naive` model makes.
+
 ---
+
+
 <h2>Usage</h2>
 
 1. Clone the repository, open the terminal and open the folder. There type `py INTERFACE.py` and enjoy! Again, the main

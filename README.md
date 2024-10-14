@@ -15,10 +15,12 @@ When predicting, any words that don't appear in the training set are ignored, on
 
 1. Small text/tweet is pasted and model is selected. After click on either of the buttons the prediction is generated. 
 
-<em>Positive tweet predicted:</em> 
+<em>Positive tweet predicted:</em>
+
 ![usage/nb_usage.png](usage/nb_usage.png)
 
 <em>Negative tweet predicted:</em> 
+
 ![usage/nb_usage2.png](usage/nb_usage2.png)
 
 --- 

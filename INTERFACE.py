@@ -7,7 +7,6 @@ from model import *
 
 label_positive, label_neutral, label_negative, label_prediction = None, None, None, None
 
-
 def clear_division(string):
     if 'e' in string:
         p1, p2 = string.split('.')

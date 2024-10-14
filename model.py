@@ -105,7 +105,7 @@ class NB:
                         test_label2prob[label] += addition
         # converting the log10 back
         for label in test_label2prob:
-            test_label2prob[label] = 10 ** (np.log10(self.prior_prob[label]) + (test_label2prob[label]))
+            test_label2prob[label] = np.log10(self.prior_prob[label]) + test_label2prob[label]
         y_hat = sorted(test_label2prob.items(), key=lambda x: x[1], reverse=True)[0][0]
         return y_hat, test_label2prob
 
@@ -118,8 +118,8 @@ class NB:
 
 
 if __name__ == "__main__":
-    # nb = NB(smoothing=1.0, small=True)
-    nb = NB(smoothing=1.0, small=False)
+    nb = NB(smoothing=1.0, small=True)
+    #nb = NB(smoothing=1.0, small=False)
     nb.train()
     nb.save()
 

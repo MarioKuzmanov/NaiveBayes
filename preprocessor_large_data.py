@@ -8,7 +8,8 @@ class Processor(object):
         labels, texts = [], []
         length = len("__label__1")
         with open("large_data/train.ft.txt", "rt", encoding="utf8") as f:
-            for line in f.readlines():
+            lines = f.readlines()
+            for line in lines:
                 labels.append(label2sentiment[line[: length].strip()])
                 texts.append(line[length:].strip())
         assert len(labels) == len(texts)

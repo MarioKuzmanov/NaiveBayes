@@ -10,28 +10,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import f1_score
 import numpy as np
 import json
-from preprocessor_large_data import Processor
 
 
 class NB:
-    def __init__(self, smoothing=1.0, small=True):
+    def __init__(self, smoothing=1.0):
         self.smoothing = smoothing
-        self.is_small = small
         self.nlp = spacy.load("en_core_web_sm")
 
-        if small:
-            df1 = pd.read_csv("small_data/sentimentdataset.csv", sep=",")
-            df1["Sentiment"] = df1["Sentiment"].str.lower()
-            df1 = df1.rename(columns={"Text": "text", "Sentiment": "sentiment"})
-            df1 = df1[df1["sentiment"].isin(("positive", "negative", "neutral"))]
-
-            df2 = pd.read_csv("small_data/tweets.csv", sep=",")
-            df2 = df2.rename(columns={"airline_sentiment": "sentiment"})
-
-            self.df = pd.concat([df1, df2])
-        else:
-            processor = Processor()
-            self.df = processor.df
+        df = pd.read_csv("small_data/tweets.csv", sep=",")
+        self.df = df.rename(columns={"airline_sentiment": "sentiment"})
 
         self.X_train, self.X_test, self.Y_train, self.Y_test = None, None, None, None
         self.label2total, self.naive_bayes, self.vocab, self.prior_prob = None, None, None, None
@@ -84,10 +71,10 @@ class NB:
                           "Priors": self.prior_prob,
                           "Vocab": self.vocab}
 
-        filename = "models/nb_small.json" if self.is_small else "models/nb_large.json"
+        filename = "models/nb_small.json"
 
         with open(filename, "w", encoding="utf8") as f:
-            json.dump(model_settings, f)
+            json.dump(model_settings, f, indent=5)
 
     def predict(self, text):
         line = self.nlp(text)
@@ -118,13 +105,6 @@ class NB:
 
 
 if __name__ == "__main__":
-    nb = NB(smoothing=1.0, small=True)
-    #nb = NB(smoothing=1.0, small=False)
+    nb = NB(smoothing=0.1)
     nb.train()
     nb.save()
-
-    
-    
-    
-    
-

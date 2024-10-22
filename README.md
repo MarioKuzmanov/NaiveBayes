@@ -1,5 +1,7 @@
 <h1 align="center"> Binary Multinomial Naive Bayes for Text Classification </h1>
 
+<h1 align="center"> Generative vs. Discriminative approaches for Text Classification </h1>
+
 
 <p> <b>N.B.</b> The idea is to showcase the model implementation and its' usage. The large model was trained with only a sample of the large dataset, which could be provided upon request. Both models are not reliable evaluators because of the small capacity to train. </p>
 
